@@ -1,0 +1,23 @@
+[
+  {
+    "_id": {
+      "$oid": "665a6316d88c441ea5c3b9bb"
+    },
+    "name": "Elfin Sanjaya",
+    "role": "Vendor",
+    "image": {
+      "$oid": "665a659280ab8ee1aa5e4f6d"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1657792360427"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1657792360427"
+      }
+    },
+    "__v": 0
+  }
+]
