@@ -5,6 +5,7 @@ const {
   UnauthorizedError,
 } = require("../../errors");
 const { createJWT, createTokenUser, createRefreshJWT } = require("../../utils");
+const { CountApproved, CountRejected } = require("./dashboard");
 const { createUserRefreshToken } = require("./refreshToken");
 
 module.exports = {
@@ -28,11 +29,14 @@ module.exports = {
       throw new BadRequestError("Please provide username and password");
     }
 
-    const result = await User.findOne({ email: email });
+    const result = await User.findOne({ username: username });
 
     if (!result) {
       throw new UnauthorizedError("Invalid Credentials");
     }
+
+    const getDataApproved = await CountApproved();
+    const getDataRejected = await CountRejected();
 
     const isPasswordCorrect = await result.comparePassword(password);
 
@@ -52,7 +56,9 @@ module.exports = {
       token,
       refreshToken,
       user: result.name,
-      role: result.role.name,
+      role: result.role,
+      getDataApproved: getDataApproved,
+      getDataRejected: getDataRejected,
     };
   },
 

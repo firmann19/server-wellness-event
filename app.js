@@ -8,10 +8,11 @@ var app = express();
 
 // Import router
 const userRouter = require("./app/api/user/router");
-const imagesRouter = require("./app/api/images/router");
-const eventNameRouter = require("./app/api/EventName/router");
+const eventCategoryRouter = require("./app/api/eventCategory/router");
 const purposedDateRouter = require("./app/api/purposed_date/router");
 const wellnessEventRouter = require("./app/api/wellnessEvent/router");
+const vendorRouter = require("./app/api/vendor/router");
+const dashboardRouter = require("./app/api/dashboard/router");
 
 // middlewares
 const notFoundMiddleware = require("./app/middlewares/not-found");
@@ -32,10 +33,11 @@ app.get("/", (req, res) => {
 
 // gunakan router
 app.use(userRouter);
-app.use(imagesRouter);
-app.use(eventNameRouter);
+app.use(eventCategoryRouter);
 app.use(purposedDateRouter);
 app.use(wellnessEventRouter);
+app.use(vendorRouter);
+app.use(dashboardRouter);
 
 // middlewares
 app.use(notFoundMiddleware);

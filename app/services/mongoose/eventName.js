@@ -1,5 +1,5 @@
 const { NotFoundError, BadRequestError } = require("../../errors");
-const EventName = require("../../api/EventName/model");
+const EventName = require("../../api/eventCategory/model");
 
 module.exports = {
   createEventName: async (req, res) => {

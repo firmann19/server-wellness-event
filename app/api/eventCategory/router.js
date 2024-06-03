@@ -4,31 +4,31 @@ const { create, update, index, getOne, destroy } = require("./controller");
 // const { authenticateUser, authorizeRoles } = require("../../middlewares/auth");
 
 router.post(
-  "/eventName",
+  "/categoryName",
   // authenticateUser,
   // authorizeRoles("Staff IT", "Manager IT"),
   create
 );
 router.get(
-  "/eventName",
+  "/categoryName",
   // authenticateUser,
   // authorizeRoles("Staff IT", "Manager IT"),
   index
 );
 router.get(
-  "/eventName/:id",
+  "/categoryName/:id",
   // authenticateUser,
   // authorizeRoles("Staff IT", "Manager IT"),
   getOne
 );
 router.put(
-  "/eventName/:id",
+  "/categoryName/:id",
   // authenticateUser,
   // authorizeRoles("Staff IT", "Manager IT"),
   update
 );
 router.delete(
-  "/eventName/:id",
+  "/categoryName/:id",
   // authenticateUser,
   // authorizeRoles("Staff IT", "Manager IT"),
   destroy

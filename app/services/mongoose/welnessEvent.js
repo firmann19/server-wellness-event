@@ -1,27 +1,25 @@
 const WellnessEvent = require("../../api/wellnessEvent/model");
-const { NotFoundError, BadRequestError } = require("../../errors");
+const { NotFoundError } = require("../../errors");
 
 module.exports = {
   createWellnessEvent: async (req, res) => {
     const {
       NamaPerusahaan,
-      EventName,
+      JudulEvent,
+      EventCategoryName,
       PostalCode,
       StreetName,
       VendorName,
-      StatusEvent,
-      Remarks,
     } = req.body;
 
     const createWellnessEvent = await WellnessEvent.create({
       Date_created: new Date(),
       NamaPerusahaan,
-      EventName,
+      JudulEvent,
+      EventCategoryName,
       PostalCode,
       StreetName,
       VendorName,
-      StatusEvent,
-      Remarks,
     });
 
     return createWellnessEvent;
@@ -30,8 +28,12 @@ module.exports = {
   getAllWellnessEvent: async (req, res) => {
     const results = await WellnessEvent.find()
       .populate({
-        path: "WellnessEventName",
+        path: "EventCategoryName",
         select: "_id name",
+      })
+      .populate({
+        path: "Purposed_Date",
+        select: "_id purposed_date",
       })
       .populate({
         path: "VendorName",
@@ -48,7 +50,7 @@ module.exports = {
       _id: id,
     })
       .populate({
-        path: "WellnessEventName",
+        path: "EventCategoryName",
         select: "_id name",
       })
       .populate({
@@ -78,34 +80,38 @@ module.exports = {
   //   return getCheckoutByIdUser;
   // },
 
-  updateWellnessEvent: async (req, res) => {
+  RejectedWellnessEvent: async (req, res) => {
     const { id } = req.params;
-    const {
-      NamaPerusahaan,
-      EventName,
-      PostalCode,
-      StreetName,
-      VendorName,
-      StatusEvent,
-      Remarks,
-    } = req.body;
+    const { StatusEvent, Remarks } = req.body;
+
+    const updatedStatusEvent = Remarks ? "Rejected" : StatusEvent;
 
     const result = await WellnessEvent.findOneAndUpdate(
       { _id: id },
       {
-        NamaPerusahaan,
-        EventName,
-        PostalCode,
-        StreetName,
-        VendorName,
-        StatusEvent,
+        StatusEvent: updatedStatusEvent,
         Remarks,
       },
       { new: true, runValidators: true }
     );
 
-    if (!result)
-      throw new NotFoundError(`Tidak ada welness event dengan id :  ${id}`);
+    return result;
+  },
+
+  ApproveWellnessEvent: async (req, res) => {
+    const { id } = req.params;
+    const { StatusEvent, Purposed_Date } = req.body;
+
+    const updatedStatusEvent = Purposed_Date ? "Approve" : StatusEvent;
+
+    const result = await WellnessEvent.findOneAndUpdate(
+      { _id: id },
+      {
+        StatusEvent: updatedStatusEvent,
+        Purposed_Date,
+      },
+      { new: true, runValidators: true }
+    );
 
     return result;
   },

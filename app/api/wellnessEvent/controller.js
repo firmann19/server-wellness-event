@@ -5,6 +5,8 @@ const {
   getOneWellnessEvent,
   updateWellnessEvent,
   deleteWellnessEvent,
+  RejectedWellnessEvent,
+  ApproveWellnessEvent,
 } = require("../../services/mongoose/welnessEvent");
 
 const create = async (req, res, next) => {
@@ -68,9 +70,21 @@ const getOne = async (req, res, next) => {
   }
 };
 
-const update = async (req, res, next) => {
+const rejected = async (req, res, next) => {
   try {
-    const result = await updateWellnessEvent(req);
+    const result = await RejectedWellnessEvent(req);
+
+    res.status(StatusCodes.OK).json({
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const approve = async (req, res, next) => {
+  try {
+    const result = await ApproveWellnessEvent(req);
 
     res.status(StatusCodes.OK).json({
       data: result,
@@ -96,6 +110,7 @@ module.exports = {
   create,
   index,
   getOne,
-  update,
+  rejected,
+  approve,
   destroy,
 };

@@ -5,9 +5,24 @@
     },
     "name": "Elfin Sanjaya",
     "role": "Vendor",
-    "image": {
-      "$oid": "665a659280ab8ee1aa5e4f6d"
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1657792360427"
+      }
     },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1657792360427"
+      }
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "665c6e8ac6a868b46a38fb40"
+    },
+    "name": "Wahyu",
+    "role": "Vendor",
     "createdAt": {
       "$date": {
         "$numberLong": "1657792360427"

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CheckoutWOSchema = new mongoose.Schema(
+const wellnessEventSchema = new mongoose.Schema(
   {
     Date_created: {
       type: Date,
@@ -11,9 +11,15 @@ const CheckoutWOSchema = new mongoose.Schema(
       maxlength: 50,
       required: [true, "nama perusahaan harus diisi"],
     },
-    WellnessEventName: {
+    JudulEvent: {
+      type: String,
+      minlength: 3,
+      maxlength: 50,
+      required: [true, "judul event harus diisi"],
+    },
+    EventCategoryName: {
       type: mongoose.Types.ObjectId,
-      ref: "EventName",
+      ref: "EventCategory",
     },
     PostalCode: {
       type: String,
@@ -31,6 +37,10 @@ const CheckoutWOSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Vendor",
     },
+    Purposed_Date: {
+      type: mongoose.Types.ObjectId,
+      ref: "purposedDate",
+    },
     StatusEvent: {
       type: String,
       enum: ["Pending", "Rejected", "Approve"],
@@ -45,4 +55,4 @@ const CheckoutWOSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("CheckoutWO", CheckoutWOSchema);
+module.exports = mongoose.model("wellnessEvent", wellnessEventSchema);

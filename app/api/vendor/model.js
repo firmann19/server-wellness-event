@@ -11,11 +11,6 @@ let vendorSchema = Schema(
       type: String,
       default: "Vendor",
     },
-    image: {
-      type: mongoose.Types.ObjectId,
-      ref: "Image",
-      required: true,
-    },
   },
   { timestamps: true }
 );

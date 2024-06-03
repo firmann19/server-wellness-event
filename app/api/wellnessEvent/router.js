@@ -1,5 +1,5 @@
 const express = require("express");
-const { create, index, getOne, update, destroy } = require("./controller");
+const { create, index, getOne, destroy, rejected, approve } = require("./controller");
 // const { authenticateUser, authorizeRoles } = require("../../middlewares/auth");
 const router = express();
 
@@ -34,10 +34,16 @@ router.get(
   getOne
 );
 router.put(
-  "/wellnessEvent/:id",
+  "/rejectedWellnessEvent/:id",
   // authenticateUser,
   // authorizeRoles("Staff IT", "Manager IT"),
-  update
+  rejected
+);
+router.put(
+  "/approveWellnessEvent/:id",
+  // authenticateUser,
+  // authorizeRoles("Staff IT", "Manager IT"),
+  approve
 );
 router.delete("/wellnessEvent/:id", destroy);
 
