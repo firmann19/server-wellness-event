@@ -20,12 +20,9 @@ const authenticateUser = async (req, res, next) => {
 
     // Attach the user and his permissions to the req object
     req.user = {
-      email: payload.email,
+      name: payload.name,
+      username: payload.username,
       role: payload.role,
-      nama: payload.nama,
-      posisi: payload.posisi,
-      departement: payload.departement,
-      group: payload.group,
       id: payload.userId,
     };
 
