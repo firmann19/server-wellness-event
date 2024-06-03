@@ -64,22 +64,6 @@ module.exports = {
     return result;
   },
 
-  // getCheckoutByIdUser: async (req, res) => {
-  //   const { id } = req.user;
-
-  //   const getCheckoutByIdUser = await Checkout.find({ UserRequest: id })
-  //     .populate({
-  //       path: "UserRequest",
-  //       select: "_id nama",
-  //     })
-  //     .populate({
-  //       path: "Departement",
-  //       select: "_id namaDepartement",
-  //     });
-
-  //   return getCheckoutByIdUser;
-  // },
-
   RejectedWellnessEvent: async (req, res) => {
     const { id } = req.params;
     const { StatusEvent, Remarks } = req.body;
