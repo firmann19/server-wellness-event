@@ -1,48 +1,43 @@
 const express = require("express");
-const { create, index, getOne, destroy, rejected, approve } = require("./controller");
-// const { authenticateUser, authorizeRoles } = require("../../middlewares/auth");
+const {
+  create,
+  index,
+  getOne,
+  destroy,
+  rejected,
+  approve,
+} = require("./controller");
+const { authenticateUser, authorizeRoles } = require("../../middlewares/auth");
 const router = express();
 
 router.post(
   "/wellnessEvent",
-  // authenticateUser,
-  // authorizeRoles("User", "Staff IT", "Manager IT"),
+  authenticateUser,
+  authorizeRoles("HR", "Vendor"),
   create
 );
 router.get(
   "/wellnessEvent",
-  // authenticateUser,
-  // authorizeRoles("User", "Staff IT", "Manager IT"),
+  authenticateUser,
+  authorizeRoles("HR", "Vendor"),
   index
 );
-// router.get(
-//   "/checkoutbyiduser",
-//   authenticateUser,
-//   //authorizeRoles("User", "Staff IT", "Manager IT"),
-//   getCheckoutIdUser
-// );
-// router.get(
-//   "/checkoutbydepartementuser",
-//   authenticateUser,
-//   //authorizeRoles("User", "Staff IT", "Manager IT"),
-//   getCheckoutDepartementUser
-// );
 router.get(
   "/wellnessEvent/:id",
-  // authenticateUser,
-  // authorizeRoles("User", "Staff IT", "Manager IT"),
+  authenticateUser,
+  authorizeRoles("HR", "Vendor"),
   getOne
 );
 router.put(
   "/rejectedWellnessEvent/:id",
-  // authenticateUser,
-  // authorizeRoles("Staff IT", "Manager IT"),
+  authenticateUser,
+  authorizeRoles("HR", "Vendor"),
   rejected
 );
 router.put(
   "/approveWellnessEvent/:id",
-  // authenticateUser,
-  // authorizeRoles("Staff IT", "Manager IT"),
+  authenticateUser,
+  authorizeRoles("HR", "Vendor"),
   approve
 );
 router.delete("/wellnessEvent/:id", destroy);
